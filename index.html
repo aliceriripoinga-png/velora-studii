@@ -1,0 +1,175 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Velora | Your Learning Space</title>
+  <style>
+    :root {
+      --lavender: #D8CDED;
+      --blue: #A9C5D8;
+      --sage: #B9CDBB;
+      --cream: #F8F5F0;
+      --ink: #37354A;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+    }
+
+    header {
+      padding: 24px;
+      background: var(--lavender);
+    }
+
+    header h1 { margin: 0; font-size: 32px; }
+    header p { margin-bottom: 0; }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 16px;
+      background: white;
+    }
+
+    button {
+      padding: 11px 14px;
+      border: 0;
+      border-radius: 12px;
+      background: var(--lavender);
+      color: var(--ink);
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    button:hover { background: var(--blue); }
+
+    main {
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .card {
+      padding: 20px;
+      margin-bottom: 16px;
+      background: white;
+      border-radius: 18px;
+      box-shadow: 0 3px 12px #37354A10;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 20px;
+      background: var(--sage);
+      font-size: 13px;
+    }
+
+    textarea, input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--lavender);
+      border-radius: 10px;
+      font: inherit;
+    }
+
+    textarea { min-height: 140px; }
+    footer { text-align: center; padding: 20px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>velora. 💜</h1>
+    <p>Your learning space. Your way.</p>
+  </header>
+
+  <nav aria-label="Main navigation">
+    <button onclick="showPage('home')">🏡 Home</button>
+    <button onclick="showPage('classes')">📚 Classrooms</button>
+    <button onclick="showPage('assignments')">📝 Assignments</button>
+    <button onclick="showPage('study')">✏️ Study Space</button>
+    <button onclick="showPage('helper')">💜 Velora Helper</button>
+    <button onclick="showPage('teacher')">🍎 Teacher Demo</button>
+  </nav>
+
+  <main id="content"></main>
+
+  <footer>Velora · Learning made for you ✨</footer>
+
+  <script>
+    function showPage(page) {
+      const content = document.getElementById("content");
+
+      const pages = {
+        home: `
+          <section class="card">
+            <span class="tag">STUDENT SPACE</span>
+            <h2>Welcome to Velora! 🌷</h2>
+            <p>A calmer place to learn, organise and grow.</p>
+          </section>
+          <section class="card">
+            <h2>Your day ✨</h2>
+            <p>📖 English — Reflection writing</p>
+            <p>➗ Maths — Practice questions</p>
+            <p>🌱 Science — Ecosystems</p>
+          </section>
+        `,
+        classes: `
+          <section class="card">
+            <h2>📚 My Classrooms</h2>
+            <p>Explore your learning spaces.</p>
+            <p>📖 English</p><p>➗ Mathematics</p>
+            <p>🌱 Science</p><p>🎨 Creative Learning</p>
+          </section>
+        `,
+        assignments: `
+          <section class="card">
+            <h2>📝 Assignments</h2>
+            <p>Sample tasks — not real school work.</p>
+            <p><label><input type="checkbox" style="width:auto"> English reflection</label></p>
+            <p><label><input type="checkbox" style="width:auto"> Maths practice</label></p>
+            <p><label><input type="checkbox" style="width:auto"> Science worksheet</label></p>
+          </section>
+        `,
+        study: `
+          <section class="card">
+            <h2>✏️ Study Space</h2>
+            <p>Write your notes below. Copy them somewhere safe before leaving.</p>
+            <textarea id="notes" placeholder="Start writing your notes..."></textarea>
+          </section>
+        `,
+        helper: `
+          <section class="card">
+            <h2>💜 Velora Helper</h2>
+            <p>This prototype doesn't use AI. Try a sample learning hint.</p>
+            <button onclick="document.getElementById('hint').textContent='Break the task into smaller steps. Write down what you know first, then tackle one question at a time. 💡'">Get a study hint</button>
+            <p id="hint" aria-live="polite"></p>
+          </section>
+        `,
+        teacher: `
+          <section class="card">
+            <h2>🍎 Teacher Demo</h2>
+            <p>This is a sample preview, not a secure teacher account.</p>
+            <label for="announcement">Class announcement</label>
+            <input id="announcement" placeholder="Write a sample announcement">
+            <button onclick="document.getElementById('preview').textContent=document.getElementById('announcement').value">Preview</button>
+            <p id="preview" aria-live="polite"></p>
+          </section>
+        `
+      };
+
+      content.innerHTML = pages[page] || pages.home;
+    }
+
+    showPage("home");
+  </script>
+</body>
+</html>
